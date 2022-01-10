@@ -33,7 +33,7 @@
       * Since we moved `react-spring` to peerDependencies, with the earlier config,
       * this rule, throws an error while running eslint.
       *
-      * Ref link: https: //github.com/import-js/eslint-plugin-import/issues/825
+      * Ref link: https://github.com/import-js/eslint-plugin-import/issues/825
       */
       "warn",
       { "ignore": ["^react(-dom)?$", "^styled-components$"] }
