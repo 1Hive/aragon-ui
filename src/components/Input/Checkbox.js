@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring'
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
 import { springs, GU, RADIUS } from '../../style'
