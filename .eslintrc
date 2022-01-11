@@ -26,17 +26,16 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": [
-      /*
-      * This rule is set to `warn` level instead of `error` since currently.
-      * `eslint-plugin-import` does not support peerDependencies.
-      *
-      * Since we moved `react-spring` to peerDependencies, with the earlier config,
-      * this rule, throws an error while running eslint.
-      *
-      * Ref link: https://github.com/import-js/eslint-plugin-import/issues/825
-      */
-      "warn",
-      { "ignore": ["^react(-dom)?$", "^styled-components$"] }
+      "error",
+      {
+        "ignore": [
+          "^react(-dom)?$", 
+          "^styled-components$", 
+          "^react-spring(/renderprops|/web)?$",
+          "^prop-types$",
+          "^dayjs$"
+        ]
+      }
     ],
     "linebreak-style": ["error", "unix"],
     "curly": "error"
