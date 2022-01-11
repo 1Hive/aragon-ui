@@ -37,9 +37,9 @@
   "peerDependencies": {
     "dayjs": "^1.10.7",
     "prop-types": "^15.8.1",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-is": "16.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
     "react-spring": "8.0.27",
     "styled-components": "^5.3.3"
   },
@@ -85,8 +85,6 @@
     "lint-staged": "^8.1.0",
     "listr": "^0.14.3",
     "prettier": "^1.19.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.63.0",
     "rollup-plugin-analyzer": "^4.0.0",
