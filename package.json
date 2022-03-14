@@ -1,6 +1,6 @@
 {
-  "name": "ui-1hive",
-  "version": "0.0.3",
+  "name": "@1hive/1hive-ui",
+  "version": "2.0.0",
   "author": "1Hive llc <hello@1hive.org>",
   "license": "MIT",
   "repository": "github:1hive/1hive-ui",
