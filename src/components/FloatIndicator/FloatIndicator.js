@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring/renderprops'
 import { Inside } from 'use-inside'
 import RootPortal from '../RootPortal/RootPortal'
 import { useTheme } from '../../theme'

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Spring } from 'react-spring'
+import { Spring } from 'react-spring/renderprops'
 import PropTypes from '../../proptypes'
 import { springs } from '../../style'
 import { unselectable } from '../../utils'

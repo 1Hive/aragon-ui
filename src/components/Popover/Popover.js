@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring/renderprops'
 import { useRoot } from '../../providers'
 import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'

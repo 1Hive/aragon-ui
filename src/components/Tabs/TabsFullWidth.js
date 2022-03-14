@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring/renderprops'
 import { useInside } from 'use-inside'
 import { GU, textStyle, springs } from '../../style'
 import { useFocusLeave } from '../../hooks'

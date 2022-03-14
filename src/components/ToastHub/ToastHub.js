@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { animated, Transition } from 'react-spring'
+import { animated, Transition } from 'react-spring/renderprops'
 import RootPortal from '../RootPortal/RootPortal'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { stylingProps } from '../../utils'

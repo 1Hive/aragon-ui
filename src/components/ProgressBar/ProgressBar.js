@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
 import styled, { keyframes } from 'styled-components'
-import { useSpring, animated, to } from 'react-spring'
+import { useSpring, animated, interpolate } from 'react-spring/web'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
 import { warnOnce } from '../../utils/environment'
@@ -64,7 +64,7 @@ const ProgressBar = React.memo(({ animate, color, progress, value }) => {
           background: currentColor,
           borderRadius: `${indeterminate ? RADIUS : 0}px`,
           animationName: `${indeterminate ? indeterminateAnim.name : 'none'}`,
-          transform: to(
+          transform: interpolate(
             [transition.x, transition.scale],
             (x, s) => `translate3d(${x * 100}%, 0, 0) scale3d(${s}, 1, 1)`
           ),

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Spring, animated } from 'react-spring'
+import { Spring, animated } from 'react-spring/renderprops'
 import ClickOutHandler from 'react-onclickout'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'

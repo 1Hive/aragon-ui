@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring/renderprops'
 import { Inside } from 'use-inside'
 import ButtonIcon from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'

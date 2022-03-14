@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring'
+import { Spring, animated } from 'react-spring/renderprops'
 import { useInside } from 'use-inside'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'

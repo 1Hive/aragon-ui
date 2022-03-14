@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring'
+import { Transition, animated } from 'react-spring/renderprops'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
