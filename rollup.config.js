@@ -68,7 +68,14 @@ export default (async () => {
         exports: 'named',
       },
     ],
-    external: ['react', 'react-dom', 'styled-components'],
+    external: [
+      'dayjs',
+      'react',
+      'react-dom',
+      'react-spring/renderprops',
+      'react-spring/web',
+      'styled-components',
+    ],
     treeshake: production
       ? {
           moduleSideEffects: false,
