@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import {
   useArrowKeysFocus,
   useClickOutside,
