@@ -97,11 +97,18 @@ Info.propTypes = {
 }
 
 // Backward compatibility
+function Description(props) {
+  return <Info mode="description" {...props} />
+}
 function Warning(props) {
   return <Info mode="warning" {...props} />
 }
-Info.Action = Info
-Info.Permissions = Warning
-Info.Alert = Warning
+function Error(props) {
+  return <Info mode="error" {...props} />
+}
+
+Info.Description = Description
+Info.Warning = Warning
+Info.Error = Error
 
 export default Info

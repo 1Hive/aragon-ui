@@ -7,8 +7,6 @@ import glob from 'fast-glob'
 import { basename, dirname } from 'path'
 import analyze from 'rollup-plugin-analyzer'
 import progress from 'rollup-plugin-progress'
-import typescript from 'rollup-plugin-typescript2'
-import { apiExtractor } from 'rollup-plugin-api-extractor'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -105,19 +103,6 @@ export default (async () => {
       }),
       nodeResolve(),
       commonjs(),
-      typescript({
-        tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: true,
-      }),
-      apiExtractor({
-        configFile: './api-extractor.json',
-        configuration: {
-          projectFolder: '.',
-          compiler: {
-            tsconfigFilePath: '<projectFolder>/tsconfig.json',
-          },
-        },
-      }),
     ],
   }
 })()
