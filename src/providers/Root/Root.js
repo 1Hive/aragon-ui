@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 
 const RootContext = React.createContext(null)
@@ -14,34 +14,20 @@ const RootContext = React.createContext(null)
  * @returns {React.FC}
  */
 function RootProvider({ children = undefined, ...props }) {
-  const rootEl = useRef(null)
-  // const [element, setElement] = useState(null)
+  const [element, setElement] = useState(null)
 
-  // const handleRef = useCallback(element => {
-  //   if (element !== null) {
-  //     setElement(element)
-  //   }
-  // }, [])
+  const handleRef = useCallback(element => {
+    if (element !== null) {
+      setElement(element)
+    }
+  }, [])
+
+  console.log(element)
 
   return (
-    <RootContext.Provider value={rootEl}>
-      <div ref={rootEl} {...props}>
-        {
-          /*
-            We don’t render the children tree until the element is present, at
-            the second rendering.
-
-            The reason why it is needed is because element references are
-            assigned after the first rendering, and we don’t want to let
-            `<Root />` consumers having to deal with the reference being `null`
-            at the first rendering.
-
-            This way, we can guarantee that if a consumer gets `null` rather
-            than the element, it’s because <Root.Provider /> has to be defined
-            at an upper level.
-          */
-          children
-        }
+    <RootContext.Provider value={element}>
+      <div ref={handleRef} {...props}>
+        {children}
       </div>
     </RootContext.Provider>
   )

@@ -7,10 +7,9 @@ const RootPortal = props => (
   <Root>
     {rootElement => {
       if (!rootElement) {
-        throw new Error(
-          '<RootPortal> needs to be nested in <Root.Provider>. Have you declared <Main>?'
-        )
+        return null
       }
+
       return ReactDOM.createPortal(props.children, rootElement)
     }}
   </Root>
