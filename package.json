@@ -35,12 +35,10 @@
     "test": "npm run lint && npm run jest"
   },
   "peerDependencies": {
-    "dayjs": "^1.10.7",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "react-spring": "8.0.27",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
@@ -99,6 +97,7 @@
   "dependencies": {
     "arg": "^2.0.0",
     "command-exists": "^1.2.6",
+    "dayjs": "^1.10.7",
     "js-sha3": "^0.8.0",
     "jsbi": "^3.1.2",
     "lodash.memoize": "^4.1.2",
@@ -108,6 +107,7 @@
     "react-blockies": "^1.4.1",
     "react-display-name": "^0.2.5",
     "react-onclickout": "^2.0.8",
+    "react-spring": "8.0.27",
     "recursive-copy": "^2.0.9",
     "use-inside": "https://github.com/aragon/use-inside#16f321e499d8f89e9b0fb0999e2d21db2b119bbf"
   },
