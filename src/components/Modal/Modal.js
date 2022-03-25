@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { cssPx, noop } from '../../utils'
 import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
@@ -38,10 +38,8 @@ function Modal({
           destroyed && onClosed()
         }}
       >
-        {show =>
-          show &&
-          /* eslint-disable react/prop-types */
-          (({ opacity, scale }) => (
+        {({ opacity, scale }, item) =>
+          item && (
             <animated.div
               css={`
                 position: fixed;
@@ -69,7 +67,7 @@ function Modal({
                 `}
                 style={{
                   pointerEvents: visible ? 'auto' : 'none',
-                  transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+                  transform: scale.to(v => `scale3d(${v}, ${v}, 1)`),
                 }}
               >
                 <div
@@ -129,8 +127,7 @@ function Modal({
                 </div>
               </animated.div>
             </animated.div>
-          ))
-        /* eslint-enable react/prop-types */
+          )
         }
       </Transition>
     </RootPortal>

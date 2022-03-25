@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
+// import { Transition, animated } from 'react-spring/renderprops'
 import { Inside } from 'use-inside'
 import RootPortal from '../RootPortal/RootPortal'
 import { useTheme } from '../../theme'
@@ -32,10 +33,8 @@ const FloatIndicator = React.memo(function FloatIndicator({
         leave={{ progress: 0 }}
         config={springs.smooth}
       >
-        {show =>
-          show &&
-          /* eslint-disable react/prop-types */
-          (({ progress }) => (
+        {({ progress }, show) =>
+          show && (
             <div
               css={`
                 position: absolute;
@@ -51,7 +50,7 @@ const FloatIndicator = React.memo(function FloatIndicator({
                 style={{
                   pointerEvents: visible ? 'auto' : 'none',
                   opacity: progress,
-                  transform: progress.interpolate(
+                  transform: progress.to(
                     v => `translate3d(0, calc(10px * ${1 - v}), 0)`
                   ),
                 }}
@@ -75,8 +74,7 @@ const FloatIndicator = React.memo(function FloatIndicator({
                 <Inside name="FloatIndicator">{children}</Inside>
               </animated.div>
             </div>
-          ))
-        /* eslint-enable react/prop-types */
+          )
         }
       </Transition>
     </RootPortal>

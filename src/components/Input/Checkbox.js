@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
+// import { Spring, animated } from 'react-spring/renderprops'
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
 import { springs, GU, RADIUS } from '../../style'
@@ -66,7 +67,7 @@ class Checkbox extends React.PureComponent {
             `}
             style={{
               opacity: progress,
-              transform: progress.interpolate(v => `scale(${v})`),
+              transform: progress.to(v => `scale(${v})`),
             }}
           >
             <Icon color={disabled ? theme.selectedDisabled : theme.selected} />

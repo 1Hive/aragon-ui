@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
+// import { Spring, animated } from 'react-spring/renderprops'
 import { useTheme } from '../../theme'
 import { clamp, warnOnce } from '../../utils'
 
@@ -113,8 +114,8 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
               strokeDasharray={length}
               strokeWidth={strokeWidth}
               style={{
-                stroke: progressValue.interpolate(colorFn),
-                strokeDashoffset: progressValue.interpolate(
+                stroke: progressValue.to(colorFn),
+                strokeDashoffset: progressValue.to(
                   t => length - (length * t) / 2
                 ),
               }}
@@ -153,10 +154,10 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                       `}
                     >
                       <animated.div style={{ fontSize: `${size * 0.2}px` }}>
-                        {progressValue.interpolate(labelPart('prefix'))}
+                        {progressValue.to(labelPart('prefix'))}
                       </animated.div>
                       <animated.div style={{ fontSize: `${size * 0.25}px` }}>
-                        {progressValue.interpolate(labelPart('value'))}
+                        {progressValue.to(labelPart('value'))}
                       </animated.div>
                       <animated.div
                         css={`
@@ -165,7 +166,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                         `}
                         style={{ fontSize: `${size * 0.13}px` }}
                       >
-                        {progressValue.interpolate(labelPart('suffix'))}
+                        {progressValue.to(labelPart('suffix'))}
                       </animated.div>
                     </div>
                     <animated.div
@@ -180,7 +181,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                       `}
                       style={{ fontSize: `${size * 0.1}px` }}
                     >
-                      {progressValue.interpolate(labelPart('secondary'))}
+                      {progressValue.to(labelPart('secondary'))}
                     </animated.div>
                   </div>
                 )}

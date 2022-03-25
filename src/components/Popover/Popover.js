@@ -1,7 +1,8 @@
 import React from 'react'
-import PropTypes from '../../proptypes'
+import PropTypes from 'prop-types'
 import Popper from 'popper.js'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
+// import { Transition, animated } from 'react-spring/renderprops'
 import { useRoot } from '../../providers'
 import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
@@ -13,7 +14,11 @@ class PopoverBase extends React.Component {
     children: PropTypes.node,
     closeOnOpenerFocus: PropTypes.bool,
     onClose: PropTypes.func,
-    opener: PropTypes._element,
+    opener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+      PropTypes.shape({ render: PropTypes.func.isRequired }),
+    ]),
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
       // to define custom Popper settings (see getPopperSettings() below).
@@ -25,7 +30,11 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
-    rootBoundary: PropTypes._element,
+    rootBoundary: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+      PropTypes.shape({ render: PropTypes.func.isRequired }),
+    ]),
     theme: PropTypes.object,
     transitionStyles: PropTypes.object,
     zIndex: PropTypes.number,
@@ -206,7 +215,7 @@ class PopoverBase extends React.Component {
           ref={this._cardElement}
           style={{
             opacity,
-            transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+            transform: scale.to(v => `scale3d(${v}, ${v}, 1)`),
             maxHeight: `${maxHeight - 2 * GU}px`,
             maxWidth: `${maxWidth - 2 * GU}px`,
           }}
@@ -244,16 +253,15 @@ function Popover({ scaleEffect, visible, ...props }) {
         leave={{ scale: scaleEffect ? 0.9 : 1, opacity: 0 }}
         native
       >
-        {visible =>
-          visible &&
-          (transitionStyles => (
+        {(transitionStyles, visible) =>
+          visible && (
             <PopoverBase
               {...props}
               rootBoundary={root}
               theme={theme}
               transitionStyles={transitionStyles}
             />
-          ))
+          )
         }
       </Transition>
     </RootPortal>

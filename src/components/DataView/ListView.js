@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
+// import { Transition, animated } from 'react-spring/renderprops'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import Checkbox from '../Input/Checkbox'
@@ -178,9 +179,8 @@ function EntryExpansion({ expansion, opened, rowHeight }) {
       leave={{ height: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
-      {show =>
-        show &&
-        (({ height }) => (
+      {({ height }, show) =>
+        show && (
           <animated.div
             css={`
               overflow: hidden;
@@ -209,7 +209,7 @@ function EntryExpansion({ expansion, opened, rowHeight }) {
               </div>
             ))}
           </animated.div>
-        ))
+        )
       }
     </Transition>
   )

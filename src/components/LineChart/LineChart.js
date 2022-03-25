@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Spring } from 'react-spring/renderprops'
+import { Spring } from '@react-spring/web'
+// import { Spring } from 'react-spring/renderprops'
 import PropTypes from '../../proptypes'
 import { springs } from '../../style'
 import { unselectable } from '../../utils'
@@ -114,100 +115,105 @@ function LineChart({
       delay={animDelay}
       reset={reset}
     >
-      {({ progress }) => (
-        <svg
-          ref={onSvgRef}
-          viewBox={`0 0 ${width} ${height}`}
-          width={widthProps || 'auto'}
-          height="auto"
-          css="display: block"
-          {...props}
-        >
-          <mask id="chart-mask">{rectangle}</mask>
-          {rectangle}
+      {/* {({ progress }) => { */}
+      {({ progress }) => {
+        const val = 1
 
-          <g mask="url(#chart-mask)">
-            {totalCount > 0 && (
-              <path
-                d={`
+        return (
+          <svg
+            ref={onSvgRef}
+            viewBox={`0 0 ${width} ${height}`}
+            width={widthProps || 'auto'}
+            height="auto"
+            css="display: block"
+            {...props}
+          >
+            <mask id="chart-mask">{rectangle}</mask>
+            {rectangle}
+
+            <g mask="url(#chart-mask)">
+              {totalCount > 0 && (
+                <path
+                  d={`
                   ${[...new Array(totalCount - 1)].reduce(
                     (path, _, index) =>
                       `${path} M ${getX(index)},${chartHeight} l 0,-8`,
                     ''
                   )}
                 `}
-                stroke={borderColor}
-                strokeWidth="1"
-              />
-            )}
-            {lines.map((line, lineIndex) => (
-              <g key={`line-plot-${line.id || lineIndex}`}>
-                <path
-                  d={`
+                  stroke={borderColor}
+                  strokeWidth="1"
+                />
+              )}
+              {lines.map((line, lineIndex) => (
+                <g key={`line-plot-${line.id || lineIndex}`}>
+                  <path
+                    d={`
                     M
                     ${getX(0)},
-                    ${getY(line.values[0], progress, chartHeight)}
+                    ${getY(line.values[0], val, chartHeight)}
 
                     ${line.values
                       .slice(1)
                       .map(
                         (val, index) =>
                           `L
-                           ${getX((index + 1) * progress)},
-                           ${getY(val, progress, chartHeight)}
+                           ${getX((index + 1) * val)},
+                           ${getY(val, val, chartHeight)}
                           `
                       )
                       .join('')}
                   `}
-                  fill="transparent"
-                  stroke={line.color || color(lineIndex, { lines })}
-                  strokeWidth="2"
-                />
-                {line.values.slice(1, -1).map((val, index) => (
-                  <circle
-                    key={index}
-                    cx={getX(index + 1) * progress}
-                    cy={getY(val, progress, chartHeight)}
-                    r={dotRadius}
-                    fill="white"
+                    fill="transparent"
                     stroke={line.color || color(lineIndex, { lines })}
-                    strokeWidth="1"
+                    strokeWidth="2"
                   />
+                  {line.values.slice(1, -1).map((val, index) => (
+                    <circle
+                      key={index}
+                      cx={getX(index + 1) * val}
+                      cy={getY(val, val, chartHeight)}
+                      r={dotRadius}
+                      fill="white"
+                      stroke={line.color || color(lineIndex, { lines })}
+                      strokeWidth="1"
+                    />
+                  ))}
+                </g>
+              ))}
+              <line
+                x1={getX(valuesCount - 1) * val}
+                y1="0"
+                x2={getX(valuesCount - 1) * val}
+                y2={chartHeight}
+                stroke="#DAEAEF"
+                strokeWidth="3"
+              />
+            </g>
+            {labels && (
+              <g transform={`translate(0,${chartHeight})`}>
+                {labels.map((label, index) => (
+                  <text
+                    key={index}
+                    x={getX(index)}
+                    y={LABELS_HEIGHT / 2}
+                    textAnchor={getLabelPosition(index, labels.length)}
+                    fill={labelColor}
+                    css={`
+                      alignment-baseline: middle;
+                      font-size: 12px;
+                      font-weight: 300;
+                      ${unselectable};
+                    `}
+                  >
+                    {label}
+                  </text>
                 ))}
               </g>
-            ))}
-            <line
-              x1={getX(valuesCount - 1) * progress}
-              y1="0"
-              x2={getX(valuesCount - 1) * progress}
-              y2={chartHeight}
-              stroke="#DAEAEF"
-              strokeWidth="3"
-            />
-          </g>
-          {labels && (
-            <g transform={`translate(0,${chartHeight})`}>
-              {labels.map((label, index) => (
-                <text
-                  key={index}
-                  x={getX(index)}
-                  y={LABELS_HEIGHT / 2}
-                  textAnchor={getLabelPosition(index, labels.length)}
-                  fill={labelColor}
-                  css={`
-                    alignment-baseline: middle;
-                    font-size: 12px;
-                    font-weight: 300;
-                    ${unselectable};
-                  `}
-                >
-                  {label}
-                </text>
-              ))}
-            </g>
-          )}
-        </svg>
-      )}
+            )}
+          </svg>
+        )
+      }}
     </Spring>
   )
 }

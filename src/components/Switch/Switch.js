@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
+// import { Spring, animated } from 'react-spring/renderprops'
 
 import { useTheme } from '../../theme'
 import { noop } from '../../utils'
@@ -90,9 +91,7 @@ function Switch({ checked, disabled, onChange }) {
             {({ progress }) => (
               <animated.span
                 style={{
-                  transform: progress.interpolate(
-                    v => `translate3d(${v}px, 0, 0)`
-                  ),
+                  transform: progress.to(v => `translate3d(${v}px, 0, 0)`),
                 }}
                 css={`
                   position: absolute;

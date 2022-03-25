@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
+// import { Spring, animated } from 'react-spring/renderprops'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
 import { unselectable } from '../../utils'
@@ -90,27 +91,25 @@ class Slider extends React.Component {
   }
   getHandleStyles(pressProgress) {
     return {
-      transform: pressProgress.interpolate(
+      transform: pressProgress.to(
         t => `translate3d(0, calc(${t * 0.5}px - 50%), 0)`
       ),
-      boxShadow: pressProgress.interpolate(
+      boxShadow: pressProgress.to(
         t => `0 1px 3px rgba(0, 0, 0, ${0.1 - 0.02 * t})`
       ),
-      background: pressProgress.interpolate(
-        t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`
-      ),
+      background: pressProgress.to(t => `hsl(0, 0%, ${100 * (1 - t * 0.01)}%)`),
     }
   }
   getHandlePositionStyles(value) {
     return {
-      transform: value.interpolate(
+      transform: value.to(
         t => `translate3d(calc(${t * 100}% + ${HANDLE_SHADOW_MARGIN}px), 0, 0)`
       ),
     }
   }
   getActiveBarStyles(value, pressProgress) {
     return {
-      transform: value.interpolate(t => `scaleX(${t}) translateZ(0)`),
+      transform: value.to(t => `scaleX(${t}) translateZ(0)`),
     }
   }
   render() {

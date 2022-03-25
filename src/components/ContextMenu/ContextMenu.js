@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
+// import { Spring, animated } from 'react-spring/renderprops'
 import ClickOutHandler from 'react-onclickout'
 import { useTheme } from '../../theme'
 import { springs, RADIUS } from '../../style'
@@ -40,7 +41,7 @@ function ContextMenu({ children, zIndex, disabled }) {
               z-index: ${appliedZIndex};
             `}
             style={{
-              boxShadow: openProgress.interpolate(
+              boxShadow: openProgress.to(
                 t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
               ),
             }}
@@ -75,9 +76,7 @@ function ContextMenu({ children, zIndex, disabled }) {
                   display: 'flex',
                   alignItems: 'center',
                   transformOrigin: '50% 50%',
-                  transform: openProgress.interpolate(
-                    v => `rotate(${v * 180}deg)`
-                  ),
+                  transform: openProgress.to(v => `rotate(${v * 180}deg)`),
                 }}
               >
                 <IconDown
@@ -94,7 +93,7 @@ function ContextMenu({ children, zIndex, disabled }) {
                   onClick={handleClose}
                   style={{
                     opacity: openProgress,
-                    boxShadow: openProgress.interpolate(
+                    boxShadow: openProgress.to(
                       t => `0 4px 4px rgba(0, 0, 0, ${t * 0.03})`
                     ),
                   }}

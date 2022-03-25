@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { animated, Transition } from 'react-spring/renderprops'
+import { animated, Transition } from '@react-spring/web'
+// import { animated, Transition } from 'react-spring/renderprops'
 import RootPortal from '../RootPortal/RootPortal'
 import { useViewport } from '../../providers/Viewport/Viewport'
 import { stylingProps } from '../../utils'
@@ -191,9 +192,9 @@ const ToastList = React.memo(function ToastList({
         onRest={remove}
         config={config}
       >
-        {item =>
-          /* eslint-disable react/prop-types */
-          ({ life, ...props }) => (
+        {/* eslint-disable react/prop-types */}
+        {({ life, ...props }, item) =>
+          item && (
             <animated.div
               style={props}
               css={`
@@ -238,8 +239,8 @@ const ToastList = React.memo(function ToastList({
               </div>
             </animated.div>
           )
-        /* eslint-enable react/prop-types */
         }
+        {/* eslint-enable react/prop-types */}
       </Transition>
     </div>
   )

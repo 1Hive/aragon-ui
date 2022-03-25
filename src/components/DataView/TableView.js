@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
+// import { Transition, animated } from 'react-spring/renderprops'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
 import { useLayout } from '../Layout/Layout'
@@ -361,9 +362,8 @@ function EntryExpansion({
       leave={{ height: 0 }}
       config={{ ...springs.smooth, precision: 0.1 }}
     >
-      {show =>
-        show &&
-        (({ height }) => (
+      {({ height }, show) =>
+        show && (
           <tr
             css={`
               td {
@@ -426,7 +426,7 @@ function EntryExpansion({
               </animated.div>
             </td>
           </tr>
-        ))
+        )
       }
     </Transition>
   )
