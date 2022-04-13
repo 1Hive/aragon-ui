@@ -144,13 +144,12 @@ class AppBar extends React.Component {
             config={springs.smooth}
             native
           >
-            {tabs =>
-              tabs &&
-              (styles => (
+            {(styles, tabs) =>
+              tabs && (
                 <TabsWrapper style={styles}>
                   <div ref={this._tabsRef}>{tabs}</div>
                 </TabsWrapper>
-              ))
+              )
             }
           </Transition>
         </div>
