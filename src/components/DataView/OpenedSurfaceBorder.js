@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Spring, animated } from '@react-spring/web'
-// import { Spring, animated } from 'react-spring/renderprops'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
 
