@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Spring } from '@react-spring/web'
-// import { Spring } from 'react-spring/renderprops'
+import { useSpring, animated } from '@react-spring/web'
 import PropTypes from '../../proptypes'
 import { springs } from '../../style'
 import { unselectable } from '../../utils'
@@ -49,6 +48,7 @@ function LineChart({
   width: widthProps,
   ...props
 }) {
+  const [progressVal, updateProgressVal] = useState(0)
   const [width, onSvgRef] = useMeasuredWidth()
 
   const lines = useMemo(() => {
@@ -107,109 +107,110 @@ function LineChart({
     />
   )
 
-  return (
-    <Spring
-      from={{ progress: 0 }}
-      to={{ progress: 1 }}
-      config={springConfig}
-      delay={animDelay}
-      reset={reset}
-    >
-      {({ progress }) => (
-        <svg
-          ref={onSvgRef}
-          viewBox={`0 0 ${width} ${height}`}
-          width={widthProps || 'auto'}
-          height="auto"
-          css="display: block"
-          {...props}
-        >
-          <mask id="chart-mask">{rectangle}</mask>
-          {rectangle}
+  useSpring({
+    to: { progress: 1 },
+    from: { progress: 0 },
+    reset: false,
+    onChange: e => {
+      updateProgressVal(e.value.progress)
+    },
+  })
 
-          <g mask="url(#chart-mask)">
-            {totalCount > 0 && (
-              <path
-                d={`
-                  ${[...new Array(totalCount - 1)].reduce(
-                    (path, _, index) =>
-                      `${path} M ${getX(index)},${chartHeight} l 0,-8`,
-                    ''
-                  )}
-                `}
-                stroke={borderColor}
-                strokeWidth="1"
-              />
-            )}
-            {lines.map((line, lineIndex) => (
-              <g key={`line-plot-${line.id || lineIndex}`}>
-                <path
-                  d={`
+  return (
+    <svg
+      ref={onSvgRef}
+      viewBox={`0 0 ${width} ${height}`}
+      width={widthProps || 'auto'}
+      height="auto"
+      css="display: block"
+      {...props}
+    >
+      <mask id="chart-mask">{rectangle}</mask>
+      {rectangle}
+
+      <g mask="url(#chart-mask)">
+        {totalCount > 0 && (
+          <path
+            strokeWidth="1"
+            stroke={borderColor}
+            d={`${[...new Array(totalCount - 1)].reduce(
+              (path, _, index) =>
+                `${path} M ${getX(index)},${chartHeight} l 0,-8`,
+              ''
+            )}`}
+          />
+        )}
+
+        {lines.map((line, lineIndex) => (
+          <g key={`line-plot-${line.id || lineIndex}`}>
+            <animated.path
+              strokeWidth="2"
+              fill="transparent"
+              stroke={line.color || color(lineIndex, { lines })}
+              d={`
                     M
                     ${getX(0)},
-                    ${getY(line.values[0], progress, chartHeight)}
+                    ${getY(line.values[0], progressVal, chartHeight)}
 
                     ${line.values
                       .slice(1)
                       .map(
                         (val, index) =>
                           `L
-                           ${getX((index + 1) * progress)},
-                           ${getY(val, progress, chartHeight)}
+                           ${getX((index + 1) * progressVal)},
+                           ${getY(val, progressVal, chartHeight)}
                           `
                       )
                       .join('')}
                   `}
-                  fill="transparent"
-                  stroke={line.color || color(lineIndex, { lines })}
-                  strokeWidth="2"
-                />
-                {line.values.slice(1, -1).map((val, index) => (
-                  <circle
-                    key={index}
-                    cx={getX(index + 1) * progress}
-                    cy={getY(val, progress, chartHeight)}
-                    r={dotRadius}
-                    fill="white"
-                    stroke={line.color || color(lineIndex, { lines })}
-                    strokeWidth="1"
-                  />
-                ))}
-              </g>
-            ))}
-            <line
-              x1={getX(valuesCount - 1) * progress}
-              y1="0"
-              x2={getX(valuesCount - 1) * progress}
-              y2={chartHeight}
-              stroke="#DAEAEF"
-              strokeWidth="3"
             />
+
+            {line.values.slice(1, -1).map((val, index) => (
+              <animated.circle
+                key={index}
+                fill="white"
+                r={dotRadius}
+                strokeWidth="1"
+                cx={getX(index + 1) * progressVal}
+                cy={getY(val, progressVal, chartHeight)}
+                stroke={line.color || color(lineIndex, { lines })}
+              />
+            ))}
           </g>
-          {labels && (
-            <g transform={`translate(0,${chartHeight})`}>
-              {labels.map((label, index) => (
-                <text
-                  key={index}
-                  x={getX(index)}
-                  y={LABELS_HEIGHT / 2}
-                  textAnchor={getLabelPosition(index, labels.length)}
-                  fill={labelColor}
-                  css={`
-                    alignment-baseline: middle;
-                    font-size: 12px;
-                    font-weight: 300;
-                    ${unselectable};
-                  `}
-                >
-                  {label}
-                </text>
-              ))}
-            </g>
-          )}
-        </svg>
+        ))}
+
+        <animated.line
+          x1={getX(valuesCount - 1) * progressVal}
+          y1="0"
+          x2={getX(valuesCount - 1) * progressVal}
+          y2={chartHeight}
+          stroke="#DAEAEF"
+          strokeWidth="3"
+        />
+      </g>
+
+      {labels && (
+        <g transform={`translate(0,${chartHeight})`}>
+          {labels.map((label, index) => (
+            <text
+              key={index}
+              x={getX(index)}
+              y={LABELS_HEIGHT / 2}
+              textAnchor={getLabelPosition(index, labels.length)}
+              fill={labelColor}
+              css={`
+                alignment-baseline: middle;
+                font-size: 12px;
+                font-weight: 300;
+                ${unselectable};
+              `}
+            >
+              {label}
+            </text>
+          ))}
+        </g>
       )}
-    </Spring>
+    </svg>
   )
 }
 
