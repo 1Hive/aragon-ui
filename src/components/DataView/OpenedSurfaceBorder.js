@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
 import { springs } from '../../style'
 import { useTheme } from '../../theme'
 
@@ -25,7 +25,7 @@ function OpenedSurfaceBorder({ opened, ...props }) {
             transform-origin: 0 0;
           `}
           style={{
-            transform: width.interpolate(v => `scale3d(${v}, 1, 1)`),
+            transform: width.to(v => `scale3d(${v}, 1, 1)`),
           }}
           {...props}
         />

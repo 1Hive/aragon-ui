@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from '@react-spring/web'
 import { useInside } from 'use-inside'
 import { GU, springs, textStyle } from '../../style'
 import { useTheme } from '../../theme'
@@ -10,7 +10,7 @@ import ButtonBase from '../ButtonBase/ButtonBase'
 // Interpolate the elevation of the toggle from which the drawer slides down.
 // In / out example: [0, 0.25, 0.5, 0.75, 1] => [0, 0.5, 1, 0.5, 0]
 function interpolateToggleElevation(value, fn) {
-  return value.interpolate(v => fn(1 - Math.abs(v * 2 - 1)))
+  return value.to(v => fn(1 - Math.abs(v * 2 - 1)))
 }
 
 function Details({ children, label, onToggle, opened: openedProp, ...props }) {
@@ -178,7 +178,7 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
                 <animated.div
                   style={{
                     marginLeft: `${1 * GU}px`,
-                    transform: openProgress.interpolate(
+                    transform: openProgress.to(
                       v => `rotate(${(1 - v) * 180}deg)`
                     ),
                     transformOrigin: '50% calc(50% - 0.5px)',
@@ -207,9 +207,7 @@ function Details({ children, label, onToggle, opened: openedProp, ...props }) {
               style={{
                 opacity: openProgress,
                 height: forceHeight
-                  ? openProgress.interpolate(
-                      v => `${v * contentHeight.current}px`
-                    )
+                  ? openProgress.to(v => `${v * contentHeight.current}px`)
                   : 'auto',
               }}
             >

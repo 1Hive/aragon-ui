@@ -5,10 +5,8 @@ import {
   AppView,
   ButtonIcon,
   Checkbox,
-  Field,
   IconMenu,
   NavigationBar,
-  SidePanel,
   Tag,
   unselectable,
 } from '@1hive/1hive-ui'
@@ -49,7 +47,7 @@ const MenuButton = () => (
 
 const DemoBadge = () => (
   <span css="margin-left: 20px">
-    <Tag mode="app">ANT</Tag>
+    <Tag mode="new">ANT</Tag>
   </span>
 )
 

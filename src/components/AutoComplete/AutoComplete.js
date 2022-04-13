@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import {
   useArrowKeysFocus,
   useClickOutside,
@@ -60,6 +60,7 @@ function AutoComplete({
     setHighlightedIndex(-1)
   }, [opened, items, value, setHighlightedIndex])
 
+  /* eslint-disable react/prop-types */
   return (
     <div css="position: relative" ref={wrapRef} onBlur={handleFocusLeave}>
       <SearchInput
@@ -79,14 +80,12 @@ function AutoComplete({
         leave={{ scale: 1, opacity: 0 }}
         native
       >
-        {show =>
-          show &&
-          /* eslint-disable react/prop-types */
-          (({ scale, opacity }) => (
+        {({ scale, opacity }, show) =>
+          show && (
             <Items
               style={{
                 opacity,
-                transform: scale.interpolate(t => `scale3d(${t},${t},1)`),
+                transform: scale.to(t => `scale3d(${t},${t},1)`),
               }}
             >
               {Array.from(uniqueItems).map((item, index) => (
@@ -104,12 +103,12 @@ function AutoComplete({
                 </Item>
               ))}
             </Items>
-          ))
-        /* eslint-enable react/prop-types */
+          )
         }
       </Transition>
     </div>
   )
+  /* eslint-enable react/prop-types */
 }
 
 AutoComplete.propTypes = {

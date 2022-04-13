@@ -95,6 +95,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "@react-spring/web": "^9.4.4",
     "arg": "^2.0.0",
     "command-exists": "^1.2.6",
     "dayjs": "^1.10.7",

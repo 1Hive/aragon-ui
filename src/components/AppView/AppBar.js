@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { Inside } from 'use-inside'
 import { useTheme } from '../../theme'
 import { PublicUrl } from '../../providers/PublicUrl'
@@ -144,13 +144,12 @@ class AppBar extends React.Component {
             config={springs.smooth}
             native
           >
-            {tabs =>
-              tabs &&
-              (styles => (
+            {(styles, tabs) =>
+              tabs && (
                 <TabsWrapper style={styles}>
                   <div ref={this._tabsRef}>{tabs}</div>
                 </TabsWrapper>
-              ))
+              )
             }
           </Transition>
         </div>

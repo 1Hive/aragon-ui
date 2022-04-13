@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Button, Modal, IconPlus, IconMinus } from '@1hive/1hive-ui'
 import Lorem from '../components/Lorem'
 

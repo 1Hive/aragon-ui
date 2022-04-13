@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { springs } from '../../style'
 import LeftIcon from './LeftIcon'
 
@@ -39,7 +39,7 @@ class NavigationBar extends React.Component {
       <Container>
         <Transition
           items={displayedItems}
-          keys={displayedItems.map(
+          key={displayedItems.map(
             // Use a different key than 0 when there is only one item, so that
             // the “leave” transition of the first item can be executed when a
             // second item is added.
@@ -52,15 +52,17 @@ class NavigationBar extends React.Component {
           leave={{ opacity: 0, position: this.state.direction }}
           native
         >
-          {item => styles => (
-            <Item
-              label={item.node}
-              onBack={onBack}
-              displayBack={item.index > 0}
-              compact={compact}
-              {...styles}
-            />
-          )}
+          {(styles, item) =>
+            item && (
+              <Item
+                label={item.node}
+                onBack={onBack}
+                displayBack={item.index > 0}
+                compact={compact}
+                {...styles}
+              />
+            )
+          }
         </Transition>
       </Container>
     )
@@ -73,7 +75,7 @@ const Item = ({ opacity, position, displayBack, onBack, label, compact }) => (
       display: 'flex',
       alignItems: 'center',
       opacity,
-      transform: position.interpolate(p => `translate(${p * 20}px, 0)`),
+      transform: position.to(p => `translate(${p * 20}px, 0)`),
     }}
   >
     <Title>
