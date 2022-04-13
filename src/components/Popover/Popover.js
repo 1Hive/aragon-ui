@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
+import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
 import { Transition, animated } from '@react-spring/web'
 import { useRoot } from '../../providers'
@@ -13,11 +14,7 @@ class PopoverBase extends React.Component {
     children: PropTypes.node,
     closeOnOpenerFocus: PropTypes.bool,
     onClose: PropTypes.func,
-    opener: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.shape({ render: PropTypes.func.isRequired }),
-    ]),
+    opener: PropTypes._element,
     placement: PropTypes.oneOf(
       // "center" is a value that doesn’t exist in Popper, but we are using it
       // to define custom Popper settings (see getPopperSettings() below).
@@ -29,11 +26,7 @@ class PopoverBase extends React.Component {
         ])
       )
     ),
-    rootBoundary: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.shape({ render: PropTypes.func.isRequired }),
-    ]),
+    rootBoundary: PropTypes._element,
     theme: PropTypes.object,
     transitionStyles: PropTypes.object,
     zIndex: PropTypes.number,
@@ -53,6 +46,7 @@ class PopoverBase extends React.Component {
   _popper = null
 
   componentDidMount() {
+    console.log(this.props.opener)
     this._document = this._popperElement.current.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape)
     this.focus()
