@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
 import { Transition, animated } from '@react-spring/web'
