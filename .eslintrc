@@ -42,5 +42,10 @@
     ],
     "linebreak-style": ["error", "unix"],
     "curly": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "17.0.2"
+    }
   }
 }
