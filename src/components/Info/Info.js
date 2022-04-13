@@ -28,6 +28,14 @@ function getModeStyles(theme, mode) {
       titleColor: theme.surfaceContentSecondary,
     }
   }
+  if (mode === 'info') {
+    return {
+      background: theme.infoSurface,
+      borderColor: theme.info,
+      color: theme.infoSurfaceContent,
+      titleColor: theme.infoSurfaceContent,
+    }
+  }
   return {
     background: theme.infoSurface,
     borderColor: theme.info,
@@ -106,9 +114,13 @@ function Warning(props) {
 function Error(props) {
   return <Info mode="error" {...props} />
 }
+function Alert(props) {
+  return <Info mode="info" {...props} />
+}
 
 Info.Description = Description
 Info.Warning = Warning
 Info.Error = Error
+Info.Alert = Alert
 
 export default Info
