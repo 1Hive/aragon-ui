@@ -45,7 +45,6 @@ class PopoverBase extends React.Component {
   _popper = null
 
   componentDidMount() {
-    console.log(this.props.opener)
     this._document = this._popperElement.current.ownerDocument
     this._document.addEventListener('keydown', this.handleEscape)
     this.focus()
