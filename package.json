@@ -32,7 +32,8 @@
     "prepare": "husky install && rm -rf ./dist && npm run build",
     "prepublishOnly": "git push && git push --tags",
     "start": "cd gallery && npm start",
-    "test": "npm run lint && npm run jest"
+    "test": "npm run lint && npm run jest",
+    "lint-staged": "lint-staged --allow-empty"
   },
   "peerDependencies": {
     "prop-types": "^15.8.1",
@@ -131,8 +132,7 @@
   },
   "lint-staged": {
     "src/*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   }
 }
