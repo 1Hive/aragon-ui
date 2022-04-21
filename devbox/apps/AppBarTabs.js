@@ -37,7 +37,6 @@ const App = () => {
 
   const items = tab === null ? ITEMS : ITEMS.slice(0, 1)
 
-  console.log('tab', tab)
 
   return (
     <div
