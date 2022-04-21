@@ -1,11 +1,12 @@
-import { basename, dirname } from 'path'
 import url from '@rollup/plugin-url'
-import resolve from '@rollup/plugin-node-resolve'
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import progress from 'rollup-plugin-progress'
-import analyze from 'rollup-plugin-analyzer'
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+
 import glob from 'fast-glob'
+import { basename, dirname } from 'path'
+import analyze from 'rollup-plugin-analyzer'
+import progress from 'rollup-plugin-progress'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -97,10 +98,10 @@ export default (async () => {
         emitFiles: true,
       }),
       babel({
-        runtimeHelpers: true,
+        babelHelpers: 'runtime',
         exclude: 'node_modules/**',
       }),
-      resolve(),
+      nodeResolve(),
       commonjs(),
     ],
   }

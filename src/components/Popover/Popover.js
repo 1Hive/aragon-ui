@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from '../../proptypes'
 import Popper from 'popper.js'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { useRoot } from '../../providers'
 import { springs, GU, BIG_RADIUS } from '../../style'
 import { useTheme } from '../../theme'
@@ -206,7 +206,7 @@ class PopoverBase extends React.Component {
           ref={this._cardElement}
           style={{
             opacity,
-            transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+            transform: scale.to(v => `scale3d(${v}, ${v}, 1)`),
             maxHeight: `${maxHeight - 2 * GU}px`,
             maxWidth: `${maxWidth - 2 * GU}px`,
           }}
@@ -244,16 +244,15 @@ function Popover({ scaleEffect, visible, ...props }) {
         leave={{ scale: scaleEffect ? 0.9 : 1, opacity: 0 }}
         native
       >
-        {visible =>
-          visible &&
-          (transitionStyles => (
+        {(transitionStyles, visible) =>
+          visible && (
             <PopoverBase
               {...props}
               rootBoundary={root}
               theme={theme}
               transitionStyles={transitionStyles}
             />
-          ))
+          )
         }
       </Transition>
     </RootPortal>

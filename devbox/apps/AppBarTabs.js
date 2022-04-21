@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { AppBar, AppView, TabBar, NavigationBar } from '@1hive/1hive-ui'
 
 const TABS = ['Home', 'Another screen']
@@ -37,6 +36,7 @@ const App = () => {
   })
 
   const items = tab === null ? ITEMS : ITEMS.slice(0, 1)
+
 
   return (
     <div

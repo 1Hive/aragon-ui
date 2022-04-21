@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { useInside } from 'use-inside'
 import { GU, textStyle, springs } from '../../style'
 import { useFocusLeave } from '../../hooks'
@@ -130,9 +130,8 @@ function TabsFullWidth({ items, selected, onChange }) {
           leave={{ y: -1, opacity: 0 }}
           native
         >
-          {opened =>
-            opened &&
-            (({ opacity, y }) => (
+          {({ opacity, y }, show) =>
+            show && (
               <animated.div
                 css={`
                   position: absolute;
@@ -146,9 +145,7 @@ function TabsFullWidth({ items, selected, onChange }) {
                 `}
                 style={{
                   opacity: opacity,
-                  transform: y.interpolate(
-                    v => `translate3d(0, ${v * 4}px, 0)`
-                  ),
+                  transform: y.to(v => `translate3d(0, ${v * 4}px, 0)`),
                 }}
               >
                 <Menu
@@ -157,7 +154,7 @@ function TabsFullWidth({ items, selected, onChange }) {
                   onKeyDown={handleMenuKeyDown}
                 />
               </animated.div>
-            ))
+            )
           }
         </Transition>
       </div>

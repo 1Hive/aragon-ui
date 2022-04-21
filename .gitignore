@@ -7,3 +7,5 @@ yarn-error.log
 /stats.html
 # testing
 coverage
+
+.DS_Store

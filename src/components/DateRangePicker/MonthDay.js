@@ -144,8 +144,8 @@ MonthDay.propTypes = {
   weekDay: PropTypes.bool,
 }
 
-function WrappedMonthDay({ onClick, ...props }) {
-  if (onClick && !props.disabled) {
+function WrappedMonthDay(props) {
+  if (props.onClick && !props.disabled) {
     return (
       <ButtonBase
         css={`
@@ -154,14 +154,21 @@ function WrappedMonthDay({ onClick, ...props }) {
           height: ${props.weekDay ? 3.5 * GU : 4.5 * GU}px;
           margin: 0;
         `}
-        onClick={onClick}
+        onClick={props.onClick}
       >
-        <MonthDay {...props}></MonthDay>
+        <MonthDay {...props} />
       </ButtonBase>
     )
   } else {
-    return <MonthDay {...props}></MonthDay>
+    return <MonthDay {...props} />
   }
+}
+
+WrappedMonthDay.propTypes = {
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  weekDay: PropTypes.bool,
+  onClick: PropTypes.func,
 }
 
 export default WrappedMonthDay

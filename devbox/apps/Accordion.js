@@ -1,7 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Header, Accordion, GU } from '@1hive/1hive-ui'
-import { Center } from '../components/Center'
 import { createRandomInt } from '../utils'
 
 const randomInt = createRandomInt()

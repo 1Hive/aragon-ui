@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 import PropTypes from 'prop-types'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from '@react-spring/web'
 import { Inside } from 'use-inside'
 import ButtonIcon from '../Button/ButtonIcon'
 import { IconClose } from '../../icons'
@@ -101,9 +101,8 @@ function SidePanel({
           unique
           native
         >
-          {opened =>
-            opened &&
-            (({ progress }) => (
+          {({ progress }, show) =>
+            show && (
               <div
                 css={`
                   position: absolute;
@@ -134,7 +133,7 @@ function SidePanel({
                 <Panel
                   compact={compact}
                   style={{
-                    transform: progress.interpolate(
+                    transform: progress.to(
                       v =>
                         `
                           translate3d(
@@ -221,7 +220,7 @@ function SidePanel({
                   </div>
                 </Panel>
               </div>
-            ))
+            )
           }
         </Transition>
       </Inside>
