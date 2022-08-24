@@ -102,8 +102,8 @@ function modeStyles(theme, mode, disabled) {
           ${theme.accentEnd} 100%
         )
       `,
-      color: theme.accentContent.alpha(0.8),
-      iconColor: theme.accentContent.alpha(0.8),
+      color: theme.accentContent,
+      iconColor: theme.accentContent,
       border: '0',
     }
   }

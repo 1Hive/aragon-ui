@@ -12,7 +12,7 @@ export default {
   surfaceContent: '#DFE3EA',
   surfaceContentSecondary: '#ACB5C2',
   surfaceIcon: '#DFE3EA',
-  surfaceUnder: '#031A3A',
+  surfaceUnder: '#51709E',
   surfaceOpened: '#7c99d6',
   surfaceSelected: '#405071',
   surfaceHighlight: '#405071',
@@ -65,7 +65,7 @@ export default {
 
   hint: '#6683c3',
   link: '#7CA8FF',
-  focus: '#0ca5ff',
+  focus: '#7CE0D6',
   selected: '#7CE0D6',
   selectedContent: '#171551',
   selectedDisabled: '#212B36',
