@@ -17,7 +17,8 @@ export default {
   surfaceSelected: '#F9FAFC',
   surfaceHighlight: '#F9FAFC',
   surfacePressed: '#F9FAFC',
-  surfaceInteractive: '#F1F3F7',
+  surfaceInteractive: '#FFFFFF',
+  surfaceSummary: '#F1F3F7',
 
   feedbackSurface: '#F9FAFC',
   feedbackSurfaceContent: '#212B36',
