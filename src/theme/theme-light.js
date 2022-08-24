@@ -38,12 +38,12 @@ export default {
   helpSurfaceContent: '#2C3437',
 
   negative: '#FF6969',
-  negativeContent: '#FFFFFF',
+  negativeContent: '#FFE8E8',
   negativeSurface: '#FFE8E8',
   negativeSurfaceContent: '#CA4141',
 
   positive: '#30DB9E',
-  positiveContent: '#FFFFFF',
+  positiveContent: '#EBFBF6',
   positiveSurface: '#D8FFF1',
   positiveSurfaceContent: '#1B8962',
 
@@ -83,6 +83,7 @@ export default {
   controlUnder: '#DDE4E9',
 
   celeste: '#8253A8',
+  celesteContent: '#FCFAFF',
   celesteBorder: '#8253A8',
   celesteSurface: '#FCFAFF',
 
