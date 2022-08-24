@@ -66,8 +66,8 @@ export default {
   hint: '#6683c3',
   link: '#7CA8FF',
   focus: '#0ca5ff',
-  selected: '#08BEE5',
-  selectedContent: '#FFFFFF',
+  selected: '#7CE0D6',
+  selectedContent: '#171551',
   selectedDisabled: '#212B36',
 
   disabled: '#02142E',
