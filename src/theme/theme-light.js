@@ -12,7 +12,7 @@ export default {
   surfaceContent: '#2C3437',
   surfaceContentSecondary: '#637381',
   surfaceIcon: '#818181',
-  surfaceUnder: '#F3F3F3',
+  surfaceUnder: '#FBFBFB',
   surfaceOpened: '#ABBECF',
   surfaceSelected: '#F9FAFC',
   surfaceHighlight: '#F9FAFC',
