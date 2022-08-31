@@ -102,7 +102,7 @@ export default {
 
   green: '#71EEB8',
   yellow: '#FFDD0F',
-  red: '#FFDD0F',
+  red: '#FFC3AB',
   blue: '#3E7BF6',
   brown: '#876559',
   purple: '#88A8E4',
