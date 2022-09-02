@@ -103,7 +103,7 @@ export default {
   green: '#2BC58E',
   yellow: '#FFA410',
   red: '#FF6D6D',
-  blue: '#073657',
-  brown: '#2A1F0E',
+  blue: '#00d3ff',
+  brown: '#99620A',
   purple: '#B19AFF',
 }
