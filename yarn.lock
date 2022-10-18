@@ -7435,9 +7435,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-use-inside@aragon/use-inside#master:
-  version "0.2.0"
-  resolved "https://codeload.github.com/aragon/use-inside/tar.gz/16f321e499d8f89e9b0fb0999e2d21db2b119bbf"
+"use-inside@npm:@1hive/use-inside@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@1hive/use-inside/-/use-inside-0.3.0.tgz#f016e5f0b83910aba39faa7308b9271810fc25ce"
+  integrity sha512-kDJ0DQNcW8cb/8WtREKh6ATj+iXntxK3bXiVeiUnOHs/vGVBF5cJt5h/r0oA5etiApvKCuGNrOgvGSWbOqOLoA==
 
 use@^3.1.0:
   version "3.1.1"

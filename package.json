@@ -113,7 +113,7 @@
     "react-display-name": "^0.2.5",
     "react-onclickout": "^2.0.8",
     "recursive-copy": "^2.0.9",
-    "use-inside": "aragon/use-inside#master"
+    "use-inside": "npm:@1hive/use-inside@0.3.0"
   },
   "engines": {
     "node": ">=12.0.0"
