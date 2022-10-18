@@ -113,7 +113,7 @@
     "react-display-name": "^0.2.5",
     "react-onclickout": "^2.0.8",
     "recursive-copy": "^2.0.9",
-    "use-inside": "https://github.com/aragon/use-inside#16f321e499d8f89e9b0fb0999e2d21db2b119bbf"
+    "use-inside": "aragon/use-inside#master"
   },
   "engines": {
     "node": ">=12.0.0"
